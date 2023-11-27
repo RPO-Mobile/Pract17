@@ -14,6 +14,8 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
     EditText et1, et2;
     Button btnOk, btnCancel;
 
+    MyApp myApp;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,22 +29,20 @@ public class Second extends AppCompatActivity implements View.OnClickListener {
         btnOk.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            et1.setText(intent.getStringExtra("et1"));
-            et2.setText(intent.getStringExtra("et2"));
-        }
+        myApp = (MyApp) getApplicationContext();
+        et1.setText(myApp.getStr1());
+        et2.setText(myApp.getStr2());
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this, Main.class);
         if (v ==  btnOk){
-            intent.putExtra("et1", et1.getText().toString());
-            intent.putExtra("et2", et2.getText().toString());
-            startActivity(intent);
+            myApp.setStr1(et1.getText().toString());
+            myApp.setStr2(et2.getText().toString());
+            finish();
         } else if (v == btnCancel) {
-            startActivity(intent);
+            finish();
         }
     }
 }

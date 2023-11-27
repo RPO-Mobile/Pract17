@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pract14</string>
+    <string name="str1">Строка 1</string>
+    <string name="str2">Строка 2</string>
 </resources>
