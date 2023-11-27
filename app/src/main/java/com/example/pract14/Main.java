@@ -24,6 +24,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         btnOpenSecondAct = (Button) findViewById(R.id.btnCallSecondAct);
 
         btnOpenSecondAct.setOnClickListener(this);
+        //cheking branches
     }
 
     protected void onResume(){
