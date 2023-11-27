@@ -14,6 +14,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     EditText et1, et2;
     Button btnOpenSecondAct;
 
+     MyApp app;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,24 +26,26 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         btnOpenSecondAct = (Button) findViewById(R.id.btnCallSecondAct);
 
         btnOpenSecondAct.setOnClickListener(this);
-        //cheking branches
-    }
 
-    protected void onResume(){
-        super.onResume();
-
-        Intent intent = getIntent();
-        if (intent != null){
-            et1.setText(intent.getStringExtra("et1"));
-            et2.setText(intent.getStringExtra("et2"));
-        }
+        app = (MyApp) getApplicationContext();
+        app.setStr1(getString(R.string.str1));
+        app.setStr2(getString(R.string.str2));
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        et1.setText(app.getStr1().toString());
+        et2.setText(app.getStr2().toString());
+    }
+
+
+    @Override
     public void onClick(View view) {
+        app.setStr1(et1.getText().toString());
+        app.setStr2(et2.getText().toString());
         Intent intent = new Intent(this, Second.class);
-        intent.putExtra("et1", et1.getText().toString());
-        intent.putExtra("et2", et2.getText().toString());
         startActivity(intent);
     }
 }
